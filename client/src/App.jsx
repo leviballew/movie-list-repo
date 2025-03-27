@@ -8,6 +8,7 @@ const API_BASE = 'http://localhost:3000';
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchMovies = async () => {
     try {
@@ -18,14 +19,26 @@ function App() {
 
     } catch (error) {
       console.error('Failed to get movies', error)
+    } finally {
+      setIsLoading(false);
     }
   }
+
+  useEffect(() => {
+    fetchMovies();
+  }, []);
+
+
+  console.log(movies);
 
   return (
     <>
       <div>
         <ul>
-          <li>Test</li>
+          <li>This Is A Simulation</li>
+          {movies.map(movie => (
+            <li>{movie.movie_title}</li>
+          ))}
         </ul>
       </div>
     </>
