@@ -1,0 +1,10 @@
+Builds Dockerized PostgreSQL Container:
+docker run --name movie_list_db_container -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=docker -e POSTGRES_DB=movie_list_db -p 5432:5432 -d postgres
+
+Get into Docker:
+docker exec -it <container_name_or_id> bash
+docker exec -it movie_list_db_container bash
+
+Get into PostgreSQL:
+psql -U <username> -d <database_name>
+psql -U postgres -d movie_list_db
