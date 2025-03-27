@@ -1,33 +1,33 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+const API_BASE = 'http://localhost:3000';
+
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [movies, setMovies] = useState([]);
+
+  const fetchMovies = async () => {
+    try {
+      setIsLoading(true);
+      const movie_response = await fetch(`${API_BASE}/movies`);
+      const movie_data = await movie_response.json();
+      setMovies(movie_data);
+
+    } catch (error) {
+      console.error('Failed to get movies', error)
+    }
+  }
 
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <ul>
+          <li>Test</li>
+        </ul>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
