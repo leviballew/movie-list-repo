@@ -14,7 +14,7 @@ app.use('/movies', moviesRoutes);
 
 
 
-app.listen(PORT, (req, res) => {
+app.listen(PORT, () => {
   console.log(`The server is running on at http://localhost:${PORT}`);
 });
 

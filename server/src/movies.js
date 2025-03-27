@@ -16,4 +16,18 @@ router.get('/', function(req, res) {
     );
 });
 
+
+router.post('/', function(req, res) {
+  knex('movie_list_table')
+    .insert({
+      movie_title: req.body.movie_title
+    })
+    .returning('*')
+    .then(movie => res.status(201).json(movie))
+    .catch(err => res.status(500).json({
+      message: 'Failed to add the movie'
+    }));
+});
+
+
 module.exports = router;

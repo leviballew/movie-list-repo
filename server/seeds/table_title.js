@@ -12,8 +12,8 @@ exports.seed = function(knex) {
         {id: 1, movie_title: 'Mean Girls'},
         {id: 2, movie_title: 'Hackers'},
         {id: 3, movie_title: 'The Grey'},
-        {id: 4,movie_title: 'Sunshine'},
-        {id:5, movie_title: 'Ex Machina'}
+        {id: 4, movie_title: 'Sunshine'},
+        {id: 5, movie_title: 'Ex Machina'}
       ]);
     });
 };
