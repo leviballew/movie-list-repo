@@ -53,6 +53,22 @@ function App() {
     movie.movie_title ? movie.movie_title.toLowerCase().includes(searchTerm.toLowerCase()) : false
   );
 
+  const deleteMovie = async (movieID) => {
+    try {
+      const response = await fetch(`${API_BASE}/movies/${movieID}`, {
+        method: 'DELETE'
+      });
+      if (response.ok) {
+        const updatedMovies = movies.filter(movie => movie.id !== movieID);
+        setMovies(updatedMovies);
+      } else {
+        alert('Failed to delete the movie');
+      }
+    } catch (error) {
+      console.error('Failed to delete movie', error);
+    }
+  }
+
 
   return (
     <>
@@ -65,7 +81,9 @@ function App() {
         />
         <ul>
           {isLoading ? <li>Loading movies...</li> : filteredMovies.map(movie => (
-            <li key={movie.id}>{movie.movie_title}</li>
+            <li key={movie.id}>{movie.movie_title}
+            <button onClick = {() => deleteMovie(movie.id)}>Delete</button>
+            </li>
           ))}
         </ul>
         <form onSubmit={addMovie}>

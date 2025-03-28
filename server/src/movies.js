@@ -30,4 +30,15 @@ router.post('/', function(req, res) {
 });
 
 
+router.delete('/:id', function(req, res) {
+  knex('movie_list_table')
+  .where('id', req.params.id)
+  .del()
+  .then(() => res.sendStatus(204))
+  .catch(() => res.status(500).json({
+    message: 'Failed to delete movie'
+  }));
+});
+
+
 module.exports = router;
